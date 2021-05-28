@@ -33,7 +33,29 @@ namespace View
         public void LoadViewContext()
         {
             _MyViewModel = new RegisterCompanyVM();
+            this.DataContext = _MyViewModel;
         }
 
+        private void SaveCommand(object sender, RoutedEventArgs e)
+        {
+            _MyViewModel.ListCompany.Add(_MyViewModel.SelectedCompany);
+            _MyViewModel.NewCompany();
+            _MyViewModel.UpdateContext();
+        }
+
+        private void SaveCommandSupiller(object sender, RoutedEventArgs e)
+        {
+            if (_MyViewModel.SelectedCompany.State == UF.PR && _MyViewModel.Age < 18)
+            {
+                string Warning = "It is not allowed to register a minor supplier in a company in Paraná";
+                MessageBoxResult result = MessageBox.Show(Warning, "Question", MessageBoxButton.OK);
+            }
+            else
+            {
+                _MyViewModel.ListSuppiler.Add(_MyViewModel.SelectedSuppiler);
+                _MyViewModel.NewSuppiler();
+                _MyViewModel.UpdateContext();
+            }
+        }
     }
 }

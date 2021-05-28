@@ -13,9 +13,11 @@ namespace Model
 
         public string Name { get; set; }
 
-        public string Register { get; set; }
+        public string Code { get; set; }
 
-        public DateTime Date { get; set; }
+        public int Age { get; set; }
+
+        public string Date { get { return DateTime.Now.Date.ToString(); } }
 
         public string Telephone { get; set; }
 

@@ -5,18 +5,71 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Cadastre sua empresa" Height="516.375" Width="800">
     <Grid>
 
-        <Grid Margin="10,10,585,33">
-            <Label x:Name="label" Content="Register your company" HorizontalAlignment="Left" Margin="26,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-            <Label Content="Name" HorizontalAlignment="Left" Margin="26,53,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="22" Margin="26,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="Black"/>
-            <Button Content="Save" HorizontalAlignment="Left" Margin="83,230,0,0" VerticalAlignment="Top" Width="75" BorderBrush="Black" Background="White"/>
-            <Label Content="UF" HorizontalAlignment="Left" Margin="26,108,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="textBox_Copy" HorizontalAlignment="Left" Height="22" Margin="26,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="Black"/>
-            <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="26,134,0,0" VerticalAlignment="Top" Width="58"/>
-            <Label Content="CNPJ" HorizontalAlignment="Left" Margin="26,160,0,0" VerticalAlignment="Top"/>
+        <Grid>
+            <Grid.Background>
+                <ImageBrush ImageSource="Images/CidadeInt.jpg" Stretch="UniformToFill"/>
+            </Grid.Background>
+        </Grid>
+
+        <Grid Margin="458,71,10,29">
+
+            <Label x:Name="label1_Copy" Content="Search" HorizontalAlignment="Left" Foreground="White" Margin="137,24,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+            <TextBox HorizontalAlignment="Left" Text="{Binding CompanyName, UpdateSourceTrigger=PropertyChanged}" Height="22" Margin="103,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="Black"/>
+
+            <ListView x:Name="listView" ItemsSource="{Binding AvalibaleSuppiler}" SelectedItem="{Binding SelectedSuppiler}" HorizontalAlignment="Left" Height="242" Margin="10,107,0,0" VerticalAlignment="Top" Width="304">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+        </Grid>
+
+        <TextBlock Text="{Binding Welcome, UpdateSourceTrigger=PropertyChanged}" Foreground="White" Margin="231,23,320,431" FontWeight="Bold" FontSize="20"/>
+
+        <Grid Margin="250,71,366,10">
+            <Label x:Name="label1" Content="Supplier Registration" HorizontalAlignment="Left" Foreground="White" Margin="26,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+
+            <Label Content="Company" HorizontalAlignment="Left" Margin="26,41,0,0" Foreground="White" VerticalAlignment="Top"/>
+            <ComboBox  HorizontalAlignment="Left" ItemsSource="{Binding ListCompany, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedCompany}" DisplayMemberPath="CompanyName" Margin="26,72,0,0" VerticalAlignment="Top" Width="120"/>
+
+            <Label Content="Name" HorizontalAlignment="Left" Margin="26,99,0,0" Foreground="White" VerticalAlignment="Top"/>
+            <TextBox  HorizontalAlignment="Left" Text="{Binding SuppilerName, UpdateSourceTrigger=PropertyChanged}"  Height="22" Margin="26,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="Black"/>
+
+            <Label Content="CNPJ / CPF" HorizontalAlignment="Left" Margin="26,152,0,0" Foreground="White" VerticalAlignment="Top"/>
+            <TextBox  HorizontalAlignment="Left" Text="{Binding Code, UpdateSourceTrigger=PropertyChanged}"  Height="22" Margin="26,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="Black"/>
+
+            <Label Content="Registered date" HorizontalAlignment="Left" Foreground="White" Margin="26,248,0,0" VerticalAlignment="Top"/>
+            <TextBox  HorizontalAlignment="Left" Text="{Binding Date, Mode=OneWay}" IsEnabled="False" Height="22" Margin="26,279,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="Black"/>
+
+            <Label Content="Telephone" HorizontalAlignment="Left" Foreground="White" Margin="26,306,0,0" VerticalAlignment="Top"/>
+            <TextBox  HorizontalAlignment="Left" Text="{Binding Telephone, UpdateSourceTrigger=PropertyChanged}"  Height="22" Margin="26,337,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="Black"/>
+
+            <Button Content="Save" HorizontalAlignment="Left" Margin="100,375,0,0" VerticalAlignment="Top" Width="46" BorderBrush="Black" Background="White" Click="SaveCommandSupiller" Height="19"/>
+            <Label Content="Age" HorizontalAlignment="Left" Margin="26,200,0,0" Foreground="White" VerticalAlignment="Top"/>
+            <TextBox  HorizontalAlignment="Left" Text="{Binding Age, UpdateSourceTrigger=PropertyChanged}"  Height="22" Margin="26,226,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" BorderBrush="Black"/>
+
+
+        </Grid>
+        <Grid Margin="10,71,586,70">
+            <Label x:Name="label" Content="Register your company" HorizontalAlignment="Left" Foreground="White" Margin="26,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+
+            <Label Content="Name" HorizontalAlignment="Left" Margin="26,53,0,0" Foreground="White" VerticalAlignment="Top"/>
+            <TextBox HorizontalAlignment="Left" Text="{Binding CompanyName, UpdateSourceTrigger=PropertyChanged}" Height="22" Margin="26,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="Black"/>
+
+            <Label Content="UF" HorizontalAlignment="Left" Margin="26,108,0,0" Foreground="White" VerticalAlignment="Top"/>
+            <ComboBox  HorizontalAlignment="Left" ItemsSource="{Binding State, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Company.State}" Margin="26,134,0,0" VerticalAlignment="Top" Width="58"/>
+
+            <Label Content="CNPJ" HorizontalAlignment="Left" Margin="26,160,0,0" Foreground="White" VerticalAlignment="Top"/>
+            <TextBox  HorizontalAlignment="Left" Text="{Binding CNPJ, UpdateSourceTrigger=PropertyChanged}"  Height="22" Margin="26,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="Black"/>
+
+            <Button Content="Save" HorizontalAlignment="Left" Margin="100,230,0,0" VerticalAlignment="Top" Width="46" BorderBrush="Black" Background="White" Click="SaveCommand"/>
+
+
         </Grid>
 
     </Grid>

@@ -95,10 +95,20 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{DCE089F6-BE15-4DEA-BC8E-9B99E20E28F1}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ViewModel\ViewModel.csproj">
       <Project>{DC375D67-7760-40C8-B198-F1339C98DBA3}</Project>
       <Name>ViewModel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\CidadeInt.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cidade.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
