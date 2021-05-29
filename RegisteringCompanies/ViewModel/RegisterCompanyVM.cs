@@ -3,43 +3,57 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+
 
 namespace ViewModel
 {
     public class RegisterCompanyVM : Model.Others.ObjectNotification
     {
 
-
         public RegisterCompanyVM()
         {
             NewCompany();
+            NewSuppiler();
+
+
             UpdateContext();
         }
 
-        private RegistrationOfCompanies _registration = new RegistrationOfCompanies();
-        public RegistrationOfCompanies Registration { get { return _registration; } set { _registration = value; OnPropertyChanged(); } }
-
-        public ObservableCollection<Company> ListCompany { get { return Registration.ListCompany; } }
-        public ObservableCollection<Supplier> ListSuppiler { get { return Registration.ListSuppiler; } }
-
+        private Company _selectedCompany = new Company();
         public Company SelectedCompany
         {
             get
             {
-                return Registration.Company;
+                return _selectedCompany;
             }
             set
             {
-                Registration.Company = value;
+                _selectedCompany = value;
                 SelectedSuppiler.Company = SelectedCompany;
                 OnPropertyChanged();
             }
         }
 
-        public Supplier SelectedSuppiler { get { return Registration.Supplier; } set { Registration.Supplier = value; OnPropertyChanged(); } }
+        private Supplier _selectedSuppiler = new Supplier();
+        public Supplier SelectedSuppiler
+        {
+            get
+            {
+                return _selectedSuppiler;
+            }
+            set
+            {
+                _selectedSuppiler = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private RegistrationOfCompanies _registration = new RegistrationOfCompanies();
+        public RegistrationOfCompanies RegistersLists { get { return _registration; } set { _registration = value; OnPropertyChanged(); } }
+
+        public ObservableCollection<Company> ListCompany { get { return RegistersLists.ListCompany; } }
+        public ObservableCollection<Supplier> ListSuppiler { get { return RegistersLists.ListSuppiler; } }
+
 
         public string CompanyName
         {
@@ -144,11 +158,9 @@ namespace ViewModel
             SelectedSuppiler = new Supplier();
         }
 
-
         public void NewCompany()
         {
             SelectedCompany = new Company();
-            SelectedCompany.State = UF.SC;
         }
 
         public string GetWelcome()
@@ -174,7 +186,7 @@ namespace ViewModel
         {
             OnPropertyChanged(nameof(SelectedCompany));
             OnPropertyChanged(nameof(SelectedSuppiler));
-            OnPropertyChanged(nameof(Registration));
+            OnPropertyChanged(nameof(RegistersLists));
             OnPropertyChanged(nameof(ListCompany));
             OnPropertyChanged(nameof(ListSuppiler));
 

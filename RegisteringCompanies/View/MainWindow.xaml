@@ -19,7 +19,7 @@
             <Label x:Name="label1_Copy" Content="Search" HorizontalAlignment="Left" Foreground="White" Margin="137,24,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
             <TextBox HorizontalAlignment="Left" Text="{Binding CompanyName, UpdateSourceTrigger=PropertyChanged}" Height="22" Margin="103,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="Black"/>
 
-            <ListView x:Name="listView" ItemsSource="{Binding AvalibaleSuppiler}" SelectedItem="{Binding SelectedSuppiler}" HorizontalAlignment="Left" Height="242" Margin="10,107,0,0" VerticalAlignment="Top" Width="304">
+            <ListView x:Name="listView" ItemsSource="{Binding ListSuppiler}" SelectedItem="{Binding SelectedSuppiler}" HorizontalAlignment="Left" Height="242" Margin="10,107,0,0" VerticalAlignment="Top" Width="304">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn/>
@@ -29,7 +29,7 @@
 
         </Grid>
 
-        <TextBlock Text="{Binding Welcome, UpdateSourceTrigger=PropertyChanged}" Foreground="White" Margin="231,23,320,431" FontWeight="Bold" FontSize="20"/>
+        <TextBlock Text="{Binding Welcome, UpdateSourceTrigger=PropertyChanged}" Foreground="White" Margin="40,10,511,444" FontWeight="Bold" FontSize="20"/>
 
         <Grid Margin="250,71,366,10">
             <Label x:Name="label1" Content="Supplier Registration" HorizontalAlignment="Left" Foreground="White" Margin="26,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>

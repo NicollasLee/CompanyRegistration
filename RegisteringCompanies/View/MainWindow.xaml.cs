@@ -45,16 +45,21 @@ namespace View
 
         private void SaveCommandSupiller(object sender, RoutedEventArgs e)
         {
-            if (_MyViewModel.SelectedCompany.State == UF.PR && _MyViewModel.Age < 18)
+            if (_MyViewModel.ListCompany.Count > 0)
             {
-                string Warning = "It is not allowed to register a minor supplier in a company in Paraná";
-                MessageBoxResult result = MessageBox.Show(Warning, "Question", MessageBoxButton.OK);
-            }
-            else
-            {
-                _MyViewModel.ListSuppiler.Add(_MyViewModel.SelectedSuppiler);
-                _MyViewModel.NewSuppiler();
-                _MyViewModel.UpdateContext();
+                _MyViewModel.SelectedCompany = _MyViewModel.RegistersLists.ListCompany.Select(p => p).FirstOrDefault();
+
+                if (_MyViewModel.SelectedCompany.State == UF.PR && _MyViewModel.Age < 18)
+                {
+                    string Warning = "In the state of Paraná, minors are prohibited.";
+                    MessageBoxResult result = MessageBox.Show(Warning, "Question", MessageBoxButton.OK);
+                }
+                else
+                {
+                    _MyViewModel.ListSuppiler.Add(_MyViewModel.SelectedSuppiler);
+                    _MyViewModel.NewSuppiler();
+                    _MyViewModel.UpdateContext();
+                }
             }
         }
     }

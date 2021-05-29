@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Model
@@ -20,6 +21,7 @@ namespace Model
         public string Date { get { return DateTime.Now.Date.ToString(); } }
 
         public string Telephone { get; set; }
+        
 
     }
 }
