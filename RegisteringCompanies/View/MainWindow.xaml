@@ -12,29 +12,33 @@
             <Grid.Background>
                 <ImageBrush ImageSource="Images/CidadeInt.jpg" Stretch="UniformToFill"/>
             </Grid.Background>
+
         </Grid>
 
         <Grid Margin="483,52,10,48">
 
             <Label x:Name="label1_Copy" Content="Search" HorizontalAlignment="Left" Foreground="White" Margin="189,24,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-            <TextBox HorizontalAlignment="Left" Text="{Binding CompanyName, UpdateSourceTrigger=PropertyChanged}" Height="22" Margin="155,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="Black"/>
+            <TextBox HorizontalAlignment="Left" Text="{Binding Write, UpdateSourceTrigger=PropertyChanged}" Height="22" Margin="155,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="Black"/>
 
             <ListView ItemsSource="{Binding AvailableListSuppiler}" SelectedItem="{Binding SelectedSuppiler}" ScrollViewer.VerticalScrollBarVisibility="Auto" IsSynchronizedWithCurrentItem="True" SelectionMode="Single" HorizontalAlignment="Left" Height="242" Margin="10,107,0,0" VerticalAlignment="Top" Width="430">
+
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Width="60" Header="Company" DisplayMemberBinding="{Binding SelectedSuppiler.Company.CompanyName}"/>
-                        <GridViewColumn Width="70" Header="Name" DisplayMemberBinding="{Binding SelectedSuppiler.Name}"/>
-                        <GridViewColumn Width="85" Header="Code" DisplayMemberBinding="{Binding SelectedSuppiler.Code}"/>
-                        <GridViewColumn Width="40" Header="Age" DisplayMemberBinding="{Binding SelectedSuppiler.Age}"/>
-                        <GridViewColumn Width="75" Header="Date" DisplayMemberBinding="{Binding SelectedSuppiler.Date}"/>
-                        <GridViewColumn Width="90" Header="Tel" DisplayMemberBinding="{Binding SelectedSuppiler.Telephone}"/>
+                        <GridViewColumn Width="60" Header="Company" DisplayMemberBinding="{Binding Company.CompanyName}"/>
+                        <GridViewColumn Width="70" Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Width="85" Header="Code" DisplayMemberBinding="{Binding Code}"/>
+                        <GridViewColumn Width="40" Header="Age" DisplayMemberBinding="{Binding Age}"/>
+                        <GridViewColumn Width="75" Header="Date" DisplayMemberBinding="{Binding Date}"/>
+                        <GridViewColumn Width="90" Header="Tel" DisplayMemberBinding="{Binding Telephone}"/>
                     </GridView>
                 </ListView.View>
+
             </ListView>
 
+            <Button x:Name="button" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="23" Margin="275,55,0,0" Height="22" Background="White" BorderBrush="Black" Click="SearchCommand"/>
         </Grid>
 
-        <TextBlock Text="{Binding Welcome, UpdateSourceTrigger=PropertyChanged}" Foreground="White" Margin="451,10,100,444" FontWeight="Bold" FontSize="20"/>
+        <TextBlock Text="{Binding Welcome, UpdateSourceTrigger=PropertyChanged}" Foreground="White" Margin="541,10,10,503" FontWeight="Bold" FontSize="20"/>
 
         <Grid Margin="225,10,550,10">
             <Label x:Name="label1" Content="Supplier Registration" HorizontalAlignment="Left" Foreground="White" Margin="26,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>

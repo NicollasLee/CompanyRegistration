@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -47,7 +49,6 @@ namespace View
         {
             if (_MyViewModel.AvailableListCompany.Count > 0)
             {
-                _MyViewModel.SelectedCompany = _MyViewModel.AvailableListCompany.Select(p => p).FirstOrDefault();
 
                 if (_MyViewModel.SelectedCompany.State == UF.PR && _MyViewModel.Age < 18 && _MyViewModel.SelectedSuppiler.Type == Person.Fisica)
                 {
@@ -56,11 +57,27 @@ namespace View
                 }
                 else
                 {
+                    
                     _MyViewModel.AvailableListSuppiler.Add(_MyViewModel.SelectedSuppiler);
                     _MyViewModel.NewSuppiler();
                     _MyViewModel.NewCompany();
                     _MyViewModel.UpdateContext();
                 }
+            }
+        }
+
+        private void SearchCommand(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(_MyViewModel.Write))
+            {
+                List<Supplier> FiltredListSupillers = new List<Supplier>();
+
+                FiltredListSupillers = _MyViewModel.AvailableListSuppiler.Where(p => p.Name.ToUpper().Contains(_MyViewModel.Write) || p.RG.ToUpper().Contains(_MyViewModel.Write) || p.Telephone.ToUpper().Contains(_MyViewModel.Write)
+                || p.Type.ToString().ToUpper().Contains(_MyViewModel.Write) || p.Age.ToString().ToUpper().Contains(_MyViewModel.Write) || p.Code.ToUpper().Contains(_MyViewModel.Write) || p.Company.CompanyName.ToUpper().Contains(_MyViewModel.Write)
+                || p.Date.ToUpper().Contains(_MyViewModel.Write) || p.DateOfBirth.ToUpper().Contains(_MyViewModel.Write)).ToList();
+
+                _MyViewModel.AvailableListSuppiler = new ObservableCollection<Supplier>(FiltredListSupillers);
+                _MyViewModel.UpdateContext();
             }
         }
     }

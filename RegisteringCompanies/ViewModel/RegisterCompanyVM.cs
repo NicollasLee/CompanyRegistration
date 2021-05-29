@@ -122,6 +122,8 @@ namespace ViewModel
                 SelectedSuppiler.Type = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(IsEnabledInformation));
+                OnPropertyChanged(nameof(RG));
+                OnPropertyChanged(nameof(DateOfBirth));
             }
         }
 
@@ -177,7 +179,9 @@ namespace ViewModel
         {
             get
             {
-                return SelectedSuppiler.RG;
+
+                return SelectedType != Person.Fisica ? SelectedSuppiler.RG = string.Empty : SelectedSuppiler.RG;
+                
             }
             set
             {
@@ -190,7 +194,7 @@ namespace ViewModel
         {
             get
             {
-                return SelectedSuppiler.DateOfBirth;
+                return SelectedType != Person.Fisica ? SelectedSuppiler.DateOfBirth = string.Empty : SelectedSuppiler.DateOfBirth;
             }
             set
             {
@@ -211,6 +215,20 @@ namespace ViewModel
             set
             {
                 _isEnabledInformation = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _write;
+        public string Write
+        {
+            get
+            {
+                return _write;
+            }
+            set
+            {
+                _write = value;
                 OnPropertyChanged();
             }
         }
@@ -264,6 +282,7 @@ namespace ViewModel
             OnPropertyChanged(nameof(Telephone));
             OnPropertyChanged(nameof(RG));
             OnPropertyChanged(nameof(DateOfBirth));
+            OnPropertyChanged(nameof(Write));
 
             OnPropertyChanged(nameof(IsEnabledInformation));
         }
