@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View"
         mc:Ignorable="d"
-        Title="Cadastre sua empresa" Height="516.375" Width="800">
+        Title="Cadastre sua empresa" Height="595.375" Width="954">
     <Grid>
 
         <Grid>
@@ -14,55 +14,71 @@
             </Grid.Background>
         </Grid>
 
-        <Grid Margin="458,71,10,29">
+        <Grid Margin="483,52,10,48">
 
-            <Label x:Name="label1_Copy" Content="Search" HorizontalAlignment="Left" Foreground="White" Margin="137,24,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-            <TextBox HorizontalAlignment="Left" Text="{Binding CompanyName, UpdateSourceTrigger=PropertyChanged}" Height="22" Margin="103,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="Black"/>
+            <Label x:Name="label1_Copy" Content="Search" HorizontalAlignment="Left" Foreground="White" Margin="189,24,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+            <TextBox HorizontalAlignment="Left" Text="{Binding CompanyName, UpdateSourceTrigger=PropertyChanged}" Height="22" Margin="155,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="Black"/>
 
-            <ListView x:Name="listView" ItemsSource="{Binding ListSuppiler}" SelectedItem="{Binding SelectedSuppiler}" HorizontalAlignment="Left" Height="242" Margin="10,107,0,0" VerticalAlignment="Top" Width="304">
+            <ListView ItemsSource="{Binding AvailableListSuppiler}" SelectedItem="{Binding SelectedSuppiler}" ScrollViewer.VerticalScrollBarVisibility="Auto" IsSynchronizedWithCurrentItem="True" SelectionMode="Single" HorizontalAlignment="Left" Height="242" Margin="10,107,0,0" VerticalAlignment="Top" Width="430">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn/>
+                        <GridViewColumn Width="60" Header="Company" DisplayMemberBinding="{Binding SelectedSuppiler.Company.CompanyName}"/>
+                        <GridViewColumn Width="70" Header="Name" DisplayMemberBinding="{Binding SelectedSuppiler.Name}"/>
+                        <GridViewColumn Width="85" Header="Code" DisplayMemberBinding="{Binding SelectedSuppiler.Code}"/>
+                        <GridViewColumn Width="40" Header="Age" DisplayMemberBinding="{Binding SelectedSuppiler.Age}"/>
+                        <GridViewColumn Width="75" Header="Date" DisplayMemberBinding="{Binding SelectedSuppiler.Date}"/>
+                        <GridViewColumn Width="90" Header="Tel" DisplayMemberBinding="{Binding SelectedSuppiler.Telephone}"/>
                     </GridView>
                 </ListView.View>
             </ListView>
 
         </Grid>
 
-        <TextBlock Text="{Binding Welcome, UpdateSourceTrigger=PropertyChanged}" Foreground="White" Margin="40,10,511,444" FontWeight="Bold" FontSize="20"/>
+        <TextBlock Text="{Binding Welcome, UpdateSourceTrigger=PropertyChanged}" Foreground="White" Margin="451,10,100,444" FontWeight="Bold" FontSize="20"/>
 
-        <Grid Margin="250,71,366,10">
+        <Grid Margin="225,10,550,10">
             <Label x:Name="label1" Content="Supplier Registration" HorizontalAlignment="Left" Foreground="White" Margin="26,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
 
             <Label Content="Company" HorizontalAlignment="Left" Margin="26,41,0,0" Foreground="White" VerticalAlignment="Top"/>
-            <ComboBox  HorizontalAlignment="Left" ItemsSource="{Binding ListCompany, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedCompany}" DisplayMemberPath="CompanyName" Margin="26,72,0,0" VerticalAlignment="Top" Width="120"/>
+            <ComboBox  HorizontalAlignment="Left" ItemsSource="{Binding AvailableListCompany, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedCompany}" DisplayMemberPath="CompanyName" Margin="26,72,0,0" VerticalAlignment="Top" Width="120"/>
 
-            <Label Content="Name" HorizontalAlignment="Left" Margin="26,99,0,0" Foreground="White" VerticalAlignment="Top"/>
-            <TextBox  HorizontalAlignment="Left" Text="{Binding SuppilerName, UpdateSourceTrigger=PropertyChanged}"  Height="22" Margin="26,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="Black"/>
+            <Label Content="Name" HorizontalAlignment="Left" Margin="26,94,0,0" Foreground="White" VerticalAlignment="Top"/>
+            <TextBox  HorizontalAlignment="Left" Text="{Binding SuppilerName, UpdateSourceTrigger=PropertyChanged}"  Height="22" Margin="26,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="Black"/>
 
-            <Label Content="CNPJ / CPF" HorizontalAlignment="Left" Margin="26,152,0,0" Foreground="White" VerticalAlignment="Top"/>
-            <TextBox  HorizontalAlignment="Left" Text="{Binding Code, UpdateSourceTrigger=PropertyChanged}"  Height="22" Margin="26,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="Black"/>
+            <Label Content="CNPJ / CPF" HorizontalAlignment="Left" Margin="26,142,0,0" Foreground="White" VerticalAlignment="Top"/>
+            <TextBox  HorizontalAlignment="Left" Text="{Binding Code, UpdateSourceTrigger=PropertyChanged}"  Height="22" Margin="26,168,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="Black"/>
 
-            <Label Content="Registered date" HorizontalAlignment="Left" Foreground="White" Margin="26,248,0,0" VerticalAlignment="Top"/>
-            <TextBox  HorizontalAlignment="Left" Text="{Binding Date, Mode=OneWay}" IsEnabled="False" Height="22" Margin="26,279,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="Black"/>
+            <Label Content="Registered date" HorizontalAlignment="Left" Foreground="White" Margin="26,287,0,0" VerticalAlignment="Top"/>
+            <TextBox  HorizontalAlignment="Left" Text="{Binding Date, Mode=OneWay}" IsEnabled="False" Height="22" Margin="26,313,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="Black"/>
 
-            <Label Content="Telephone" HorizontalAlignment="Left" Foreground="White" Margin="26,306,0,0" VerticalAlignment="Top"/>
-            <TextBox  HorizontalAlignment="Left" Text="{Binding Telephone, UpdateSourceTrigger=PropertyChanged}"  Height="22" Margin="26,337,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="Black"/>
+            <Label Content="Telephone" HorizontalAlignment="Left" Foreground="White" Margin="26,335,0,0" VerticalAlignment="Top"/>
+            <TextBox  HorizontalAlignment="Left" Text="{Binding Telephone, UpdateSourceTrigger=PropertyChanged}"  Height="22" Margin="26,366,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="Black"/>
 
-            <Button Content="Save" HorizontalAlignment="Left" Margin="100,375,0,0" VerticalAlignment="Top" Width="46" BorderBrush="Black" Background="White" Click="SaveCommandSupiller" Height="19"/>
-            <Label Content="Age" HorizontalAlignment="Left" Margin="26,200,0,0" Foreground="White" VerticalAlignment="Top"/>
-            <TextBox  HorizontalAlignment="Left" Text="{Binding Age, UpdateSourceTrigger=PropertyChanged}"  Height="22" Margin="26,226,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" BorderBrush="Black"/>
+            <Label Content="Type" HorizontalAlignment="Left" Margin="26,190,0,0" Foreground="White" VerticalAlignment="Top"/>
+            <ComboBox  HorizontalAlignment="Left" ItemsSource="{Binding Type, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedType}" Margin="26,221,0,0" VerticalAlignment="Top" Width="120"/>
 
+            <Label Content="Age" HorizontalAlignment="Left" Margin="26,239,0,0" Foreground="White" VerticalAlignment="Top"/>
+            <TextBox  HorizontalAlignment="Left" Text="{Binding Age, UpdateSourceTrigger=PropertyChanged}"  Height="22" Margin="26,265,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" BorderBrush="Black"/>
+
+            <Grid Margin="0,395,10,-12" IsEnabled="{Binding IsEnabledInformation, UpdateSourceTrigger=PropertyChanged}">
+                <Label Content="RG" HorizontalAlignment="Left" Foreground="White" VerticalAlignment="Top" RenderTransformOrigin="1.48,0.5" Margin="27,0,0,0"/>
+                <TextBox  HorizontalAlignment="Left" Text="{Binding RG, UpdateSourceTrigger=PropertyChanged}"  Height="22" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="Black" Margin="27,27,0,0"/>
+
+                <Label Content="Data de nascimento" HorizontalAlignment="Left" Foreground="White" VerticalAlignment="Top" Margin="28,54,0,0" Width="119"/>
+                <TextBox  HorizontalAlignment="Left" Text="{Binding DateOfBirth, UpdateSourceTrigger=PropertyChanged}"  Height="22"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="Black" Margin="28,80,0,0"/>
+            </Grid>
+
+            <Button Content="Save" HorizontalAlignment="Left" Margin="100,515,0,0" VerticalAlignment="Top" Width="46" BorderBrush="Black" Background="White" Click="SaveCommandSupiller" Height="19"/>
 
         </Grid>
-        <Grid Margin="10,71,586,70">
+        <Grid Margin="10,13,726,128">
             <Label x:Name="label" Content="Register your company" HorizontalAlignment="Left" Foreground="White" Margin="26,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
 
             <Label Content="Name" HorizontalAlignment="Left" Margin="26,53,0,0" Foreground="White" VerticalAlignment="Top"/>
             <TextBox HorizontalAlignment="Left" Text="{Binding CompanyName, UpdateSourceTrigger=PropertyChanged}" Height="22" Margin="26,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="Black"/>
 
             <Label Content="UF" HorizontalAlignment="Left" Margin="26,108,0,0" Foreground="White" VerticalAlignment="Top"/>
-            <ComboBox  HorizontalAlignment="Left" ItemsSource="{Binding State, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Company.State}" Margin="26,134,0,0" VerticalAlignment="Top" Width="58"/>
+            <ComboBox  HorizontalAlignment="Left" ItemsSource="{Binding State, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedCompany.State}" Margin="26,134,0,0" VerticalAlignment="Top" Width="58"/>
 
             <Label Content="CNPJ" HorizontalAlignment="Left" Margin="26,160,0,0" Foreground="White" VerticalAlignment="Top"/>
             <TextBox  HorizontalAlignment="Left" Text="{Binding CNPJ, UpdateSourceTrigger=PropertyChanged}"  Height="22" Margin="26,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="Black"/>

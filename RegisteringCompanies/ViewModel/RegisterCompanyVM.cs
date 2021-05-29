@@ -48,12 +48,11 @@ namespace ViewModel
             }
         }
 
-        private RegistrationOfCompanies _registration = new RegistrationOfCompanies();
-        public RegistrationOfCompanies RegistersLists { get { return _registration; } set { _registration = value; OnPropertyChanged(); } }
+        private ObservableCollection<Company> _availableListCompany = new ObservableCollection<Company>();
+        public ObservableCollection<Company> AvailableListCompany { get { return _availableListCompany; } set { _availableListCompany = value; OnPropertyChanged(); } }
 
-        public ObservableCollection<Company> ListCompany { get { return RegistersLists.ListCompany; } }
-        public ObservableCollection<Supplier> ListSuppiler { get { return RegistersLists.ListSuppiler; } }
-
+        private ObservableCollection<Supplier> _availableListSuppiler = new ObservableCollection<Supplier>();
+        public ObservableCollection<Supplier> AvailableListSuppiler { get { return _availableListSuppiler; } set { _availableListSuppiler = value; OnPropertyChanged(); } }
 
         public string CompanyName
         {
@@ -100,6 +99,29 @@ namespace ViewModel
             {
                 SelectedSuppiler.Name = value;
                 OnPropertyChanged();
+            }
+        }
+
+
+        public IEnumerable<Person> Type
+        {
+            get
+            {
+                return Enum.GetValues(typeof(Person)).Cast<Person>();
+            }
+        }
+
+        public Person SelectedType
+        {
+            get
+            {
+                return SelectedSuppiler.Type;
+            }
+            set
+            {
+                SelectedSuppiler.Type = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(IsEnabledInformation));
             }
         }
 
@@ -151,7 +173,48 @@ namespace ViewModel
             }
         }
 
+        public string RG
+        {
+            get
+            {
+                return SelectedSuppiler.RG;
+            }
+            set
+            {
+                SelectedSuppiler.RG = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string DateOfBirth
+        {
+            get
+            {
+                return SelectedSuppiler.DateOfBirth;
+            }
+            set
+            {
+                SelectedSuppiler.DateOfBirth = value;
+                OnPropertyChanged();
+            }
+        }
+
         public string Welcome { get { return GetWelcome(); } }
+
+        private bool _isEnabledInformation;
+        public bool IsEnabledInformation
+        {
+            get
+            {
+                return SelectedType == Person.Fisica ? _isEnabledInformation = true : _isEnabledInformation = false;
+            }
+            set
+            {
+                _isEnabledInformation = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         public void NewSuppiler()
         {
@@ -186,16 +249,23 @@ namespace ViewModel
         {
             OnPropertyChanged(nameof(SelectedCompany));
             OnPropertyChanged(nameof(SelectedSuppiler));
-            OnPropertyChanged(nameof(RegistersLists));
-            OnPropertyChanged(nameof(ListCompany));
-            OnPropertyChanged(nameof(ListSuppiler));
+            OnPropertyChanged(nameof(SelectedType));
+            OnPropertyChanged(nameof(Type));
+
+            OnPropertyChanged(nameof(AvailableListCompany));
+            OnPropertyChanged(nameof(AvailableListSuppiler));
 
             OnPropertyChanged(nameof(CompanyName));
             OnPropertyChanged(nameof(CNPJ));
 
             OnPropertyChanged(nameof(SuppilerName));
             OnPropertyChanged(nameof(Code));
+            OnPropertyChanged(nameof(Age));
             OnPropertyChanged(nameof(Telephone));
+            OnPropertyChanged(nameof(RG));
+            OnPropertyChanged(nameof(DateOfBirth));
+
+            OnPropertyChanged(nameof(IsEnabledInformation));
         }
 
     }

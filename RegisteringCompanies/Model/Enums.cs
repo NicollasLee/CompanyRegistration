@@ -7,3 +7,10 @@
     BA,
     MG
 }
+
+public enum Person
+{
+    Default,
+    Fisica,
+    Juridica
+}

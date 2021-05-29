@@ -38,26 +38,27 @@ namespace View
 
         private void SaveCommand(object sender, RoutedEventArgs e)
         {
-            _MyViewModel.ListCompany.Add(_MyViewModel.SelectedCompany);
+            _MyViewModel.AvailableListCompany.Add(_MyViewModel.SelectedCompany);
             _MyViewModel.NewCompany();
             _MyViewModel.UpdateContext();
         }
 
         private void SaveCommandSupiller(object sender, RoutedEventArgs e)
         {
-            if (_MyViewModel.ListCompany.Count > 0)
+            if (_MyViewModel.AvailableListCompany.Count > 0)
             {
-                _MyViewModel.SelectedCompany = _MyViewModel.RegistersLists.ListCompany.Select(p => p).FirstOrDefault();
+                _MyViewModel.SelectedCompany = _MyViewModel.AvailableListCompany.Select(p => p).FirstOrDefault();
 
-                if (_MyViewModel.SelectedCompany.State == UF.PR && _MyViewModel.Age < 18)
+                if (_MyViewModel.SelectedCompany.State == UF.PR && _MyViewModel.Age < 18 && _MyViewModel.SelectedSuppiler.Type == Person.Fisica)
                 {
                     string Warning = "In the state of Paraná, minors are prohibited.";
-                    MessageBoxResult result = MessageBox.Show(Warning, "Question", MessageBoxButton.OK);
+                    MessageBoxResult result = MessageBox.Show(Warning, "Warning", MessageBoxButton.OK);
                 }
                 else
                 {
-                    _MyViewModel.ListSuppiler.Add(_MyViewModel.SelectedSuppiler);
+                    _MyViewModel.AvailableListSuppiler.Add(_MyViewModel.SelectedSuppiler);
                     _MyViewModel.NewSuppiler();
+                    _MyViewModel.NewCompany();
                     _MyViewModel.UpdateContext();
                 }
             }
