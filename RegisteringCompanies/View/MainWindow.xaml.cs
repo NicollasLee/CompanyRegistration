@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,6 @@ namespace View
     /// </summary>
     public partial class MainWindow : Window
     {
-
         private RegisterCompanyVM _MyViewModel;
 
         public MainWindow()
@@ -40,9 +40,19 @@ namespace View
 
         private void SaveCommand(object sender, RoutedEventArgs e)
         {
-            _MyViewModel.AvailableListCompany.Add(_MyViewModel.SelectedCompany);
-            _MyViewModel.NewCompany();
-            _MyViewModel.UpdateContext();
+            if (string.IsNullOrEmpty(_MyViewModel.SelectedCompany.CompanyName) || string.IsNullOrEmpty(_MyViewModel.SelectedCompany.CNPJ))
+            {
+                string Warning = "Please fill in all the fields..";
+                MessageBoxResult result = MessageBox.Show(Warning, "Warning", MessageBoxButton.OK);
+            }
+            else
+            {
+                _MyViewModel.AvailableListCompany.Add(_MyViewModel.SelectedCompany);
+                _MyViewModel.SelectedSuppiler.Company = _MyViewModel.AvailableListCompany.Select(P => _MyViewModel.SelectedCompany).FirstOrDefault();
+
+                _MyViewModel.NewCompany();
+                _MyViewModel.UpdateContext();
+            }
         }
 
         private void SaveCommandSupiller(object sender, RoutedEventArgs e)
@@ -57,8 +67,9 @@ namespace View
                 }
                 else
                 {
-                    
+
                     _MyViewModel.AvailableListSuppiler.Add(_MyViewModel.SelectedSuppiler);
+
                     _MyViewModel.NewSuppiler();
                     _MyViewModel.NewCompany();
                     _MyViewModel.UpdateContext();
@@ -71,14 +82,49 @@ namespace View
             if (!string.IsNullOrEmpty(_MyViewModel.Write))
             {
                 List<Supplier> FiltredListSupillers = new List<Supplier>();
+                _MyViewModel.AssistantList = _MyViewModel.AvailableListSuppiler;
 
-                FiltredListSupillers = _MyViewModel.AvailableListSuppiler.Where(p => p.Name.ToUpper().Contains(_MyViewModel.Write) || p.RG.ToUpper().Contains(_MyViewModel.Write) || p.Telephone.ToUpper().Contains(_MyViewModel.Write)
-                || p.Type.ToString().ToUpper().Contains(_MyViewModel.Write) || p.Age.ToString().ToUpper().Contains(_MyViewModel.Write) || p.Code.ToUpper().Contains(_MyViewModel.Write) || p.Company.CompanyName.ToUpper().Contains(_MyViewModel.Write)
-                || p.Date.ToUpper().Contains(_MyViewModel.Write) || p.DateOfBirth.ToUpper().Contains(_MyViewModel.Write)).ToList();
+                FiltredListSupillers = _MyViewModel.AvailableListSuppiler.Where(p => p.Name.ToUpper() == _MyViewModel.Write.ToUpper() || p.RG.ToUpper() == _MyViewModel.Write.ToUpper() ||
+                p.Telephone.ToUpper() == _MyViewModel.Write.ToUpper() || p.Type.ToString().ToUpper() == _MyViewModel.Write.ToUpper() || p.Age.ToString().ToUpper() == _MyViewModel.Write.ToUpper()
+                || p.Code.ToUpper() == _MyViewModel.Write.ToUpper() || p.Company.CompanyName.ToUpper() == _MyViewModel.Write.ToUpper() || p.Date.ToString().ToUpper() == _MyViewModel.Write.ToUpper()
+                || p.DateOfBirth.ToUpper() == _MyViewModel.Write.ToUpper()).ToList();
 
                 _MyViewModel.AvailableListSuppiler = new ObservableCollection<Supplier>(FiltredListSupillers);
+
+
+            }
+        }
+
+        private void DeleteCommand(object sender, RoutedEventArgs e)
+        {
+            if (_MyViewModel.SelectedSuppiler != null)
+            {
+                if (_MyViewModel.AvailableListSuppiler.Count == 1)
+                {
+                    _MyViewModel.AvailableListSuppiler.Remove(_MyViewModel.AvailableListSuppiler[0]);
+                }
+                else
+                {
+                    _MyViewModel.AvailableListSuppiler.Remove(_MyViewModel.SelectedSuppiler);
+                }
+                _MyViewModel.NewSuppiler();
                 _MyViewModel.UpdateContext();
             }
         }
+
+        private void DeleteAllCommand(object sender, RoutedEventArgs e)
+        {
+
+            string Warning = "Are you sure you want to delete all suppliers?";
+            MessageBoxResult result = MessageBox.Show(Warning, "Question", MessageBoxButton.YesNoCancel);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                _MyViewModel.AvailableListSuppiler.Clear();
+                _MyViewModel.NewSuppiler();
+                _MyViewModel.UpdateContext();
+            }
+        }
+
     }
 }

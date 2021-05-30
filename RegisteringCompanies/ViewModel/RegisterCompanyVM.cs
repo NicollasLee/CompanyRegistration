@@ -19,7 +19,8 @@ namespace ViewModel
             UpdateContext();
         }
 
-        private Company _selectedCompany = new Company();
+
+        private Company _selectedCompany;
         public Company SelectedCompany
         {
             get
@@ -29,12 +30,19 @@ namespace ViewModel
             set
             {
                 _selectedCompany = value;
-                SelectedSuppiler.Company = SelectedCompany;
+
+
+                if (AvailableListCompany.Count > 0)
+                {
+                    SelectedSuppiler.Company = string.IsNullOrEmpty(_selectedCompany.CompanyName) ? SelectedSuppiler.Company : _selectedCompany;
+                }
+
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(SelectedSuppiler));
             }
         }
 
-        private Supplier _selectedSuppiler = new Supplier();
+        private Supplier _selectedSuppiler;
         public Supplier SelectedSuppiler
         {
             get
@@ -44,9 +52,12 @@ namespace ViewModel
             set
             {
                 _selectedSuppiler = value;
+
                 OnPropertyChanged();
             }
         }
+
+        public ObservableCollection<Supplier> AssistantList = new ObservableCollection<Supplier>();
 
         private ObservableCollection<Company> _availableListCompany = new ObservableCollection<Company>();
         public ObservableCollection<Company> AvailableListCompany { get { return _availableListCompany; } set { _availableListCompany = value; OnPropertyChanged(); } }
@@ -181,7 +192,7 @@ namespace ViewModel
             {
 
                 return SelectedType != Person.Fisica ? SelectedSuppiler.RG = string.Empty : SelectedSuppiler.RG;
-                
+
             }
             set
             {
@@ -202,8 +213,6 @@ namespace ViewModel
                 OnPropertyChanged();
             }
         }
-
-        public string Welcome { get { return GetWelcome(); } }
 
         private bool _isEnabledInformation;
         public bool IsEnabledInformation
@@ -229,10 +238,15 @@ namespace ViewModel
             set
             {
                 _write = value;
+
+                if (string.IsNullOrEmpty(_write))
+                {
+                    AvailableListSuppiler = AssistantList;
+                }
+
                 OnPropertyChanged();
             }
         }
-
 
         public void NewSuppiler()
         {
@@ -244,25 +258,7 @@ namespace ViewModel
             SelectedCompany = new Company();
         }
 
-        public string GetWelcome()
-        {
-            int hora = DateTime.Now.Hour;
-
-            if (hora > 6 && hora < 12)
-            {
-                return "Good morning,";
-            }
-            else if (hora >= 12 && hora < 18)
-            {
-                return "Good afternoon,";
-            }
-            else
-            {
-                return "Good night,";
-            }
-        }
-
-
+        
         public void UpdateContext()
         {
             OnPropertyChanged(nameof(SelectedCompany));
