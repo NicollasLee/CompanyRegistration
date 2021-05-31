@@ -17,8 +17,8 @@
 
         <Grid Margin="440,52,10,48">
 
-            <Label x:Name="label1_Copy" Content="Search" HorizontalAlignment="Left" Foreground="White" Margin="189,24,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-            <TextBox HorizontalAlignment="Left" Text="{Binding Write, UpdateSourceTrigger=PropertyChanged}" Height="22" Margin="155,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="Black"/>
+            <Label x:Name="label1_Copy" Content="Search" HorizontalAlignment="Left" Foreground="White" Margin="189,24,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
+            <TextBox HorizontalAlignment="Left" Text="{Binding Write, UpdateSourceTrigger=PropertyChanged}" ToolTip="Pode ser pesquisado por mais de uma caracteristica por vez" Height="26" Margin="155,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="Black"/>
 
             <ListView ItemsSource="{Binding AvailableListSuppiler}" SelectedItem="{Binding SelectedSuppiler}" ScrollViewer.VerticalScrollBarVisibility="Auto" IsSynchronizedWithCurrentItem="True" SelectionMode="Single" HorizontalAlignment="Left" Height="242" Margin="10,107,0,0" VerticalAlignment="Top" Width="468">
 
@@ -35,13 +35,35 @@
 
             </ListView>
 
-            <Button x:Name="button" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="23" Margin="275,55,0,0" Height="22" Background="White" BorderBrush="Black" Click="SearchCommand">
+            <Button x:Name="button" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="26" Margin="280,55,0,0" Height="26" Background="White" BorderBrush="Black" Click="SearchCommand">
+                <Button.ContentTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <Image  Width="23" Height="23" Source="/Images/FindB.png"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </Button.ContentTemplate>
 
-                
             </Button>
 
-            <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="54" Margin="10,354,0,0" Height="22" Background="Red" Foreground="White" BorderBrush="Black" Click="DeleteCommand"/>
-            <Button Content="Delete All" HorizontalAlignment="Left" VerticalAlignment="Top" Width="54" Margin="96,354,0,0" Height="22" Background="DarkRed" Foreground="White" BorderBrush="Black" Click="DeleteAllCommand"/>
+            <Button  HorizontalAlignment="Left" VerticalAlignment="Top" Width="31" Margin="10,354,0,0" Height="31" Background="White" Foreground="White" BorderBrush="Black" Click="DeleteCommand">
+                <Button.ContentTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <Image  Width="25" Source="/Images/DeleteOne.png"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </Button.ContentTemplate>
+            </Button>
+            <Button HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Margin="448,354,0,0" Height="31" Background="White" BorderBrush="Black" Click="DeleteAllCommand">
+                <Button.ContentTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <Image  Width="25" Source="/Images/DeleteB.png"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </Button.ContentTemplate>
+            </Button>
         </Grid>
 
         <Grid Margin="225,10,550,10">
@@ -76,7 +98,15 @@
                 <TextBox  HorizontalAlignment="Left" Text="{Binding DateOfBirth, UpdateSourceTrigger=PropertyChanged}" MaxLength="8" Height="22"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="Black" Margin="28,80,0,0"/>
             </Grid>
 
-            <Button Content="Save" HorizontalAlignment="Left" Margin="100,515,0,0" VerticalAlignment="Top" Width="46" BorderBrush="Green" Foreground="White" Background="Green" Click="SaveCommandSupiller" Height="19"/>
+            <Button  HorizontalAlignment="Left" Margin="118,505,0,0" VerticalAlignment="Top" Width="28" BorderBrush="Black" Background="White" Click="SaveCommandSupiller" Height="29">
+                <Button.ContentTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <Image  Width="25" Source="/Images/Add.png"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </Button.ContentTemplate>
+            </Button>
 
         </Grid>
         <Grid Margin="10,13,762,128">
@@ -91,7 +121,15 @@
             <Label Content="CNPJ" HorizontalAlignment="Left" Margin="26,160,0,0" Foreground="White" VerticalAlignment="Top"/>
             <TextBox  HorizontalAlignment="Left" Text="{Binding CNPJ, UpdateSourceTrigger=PropertyChanged}" MaxLength="14" Height="22" Margin="26,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="Black"/>
 
-            <Button Content="Save" HorizontalAlignment="Left" Margin="100,230,0,0" VerticalAlignment="Top" Width="46" BorderBrush="Black" Background="Green" Foreground="White" Click="SaveCommand"/>
+            <Button HorizontalAlignment="Left" Margin="113,228,0,0" VerticalAlignment="Top" Width="33" BorderBrush="Black" Background="White"  Click="SaveCommand" Height="27">
+                <Button.ContentTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <Image  Width="25" Source="/Images/Add.png"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </Button.ContentTemplate>
+            </Button>
 
 
         </Grid>

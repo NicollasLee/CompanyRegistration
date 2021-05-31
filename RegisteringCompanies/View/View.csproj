@@ -110,5 +110,19 @@
   <ItemGroup>
     <Resource Include="Images\Cidade.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Delete.png" />
+    <Resource Include="Images\DeleteAll.png" />
+    <Resource Include="Images\Find.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\DeleteB.png" />
+    <Resource Include="Images\DeleteOne.png" />
+    <Resource Include="Images\FindB.png" />
+    <Resource Include="Images\ic_pageview_white_48dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Add.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -81,13 +81,21 @@ namespace View
         {
             if (!string.IsNullOrEmpty(_MyViewModel.Write))
             {
+
+                string[] filter = _MyViewModel.Write.Trim().Split(' ');
+
                 List<Supplier> FiltredListSupillers = new List<Supplier>();
                 _MyViewModel.AssistantList = _MyViewModel.AvailableListSuppiler;
 
-                FiltredListSupillers = _MyViewModel.AvailableListSuppiler.Where(p => p.Name.ToUpper() == _MyViewModel.Write.ToUpper() || p.RG.ToUpper() == _MyViewModel.Write.ToUpper() ||
-                p.Telephone.ToUpper() == _MyViewModel.Write.ToUpper() || p.Type.ToString().ToUpper() == _MyViewModel.Write.ToUpper() || p.Age.ToString().ToUpper() == _MyViewModel.Write.ToUpper()
-                || p.Code.ToUpper() == _MyViewModel.Write.ToUpper() || p.Company.CompanyName.ToUpper() == _MyViewModel.Write.ToUpper() || p.Date.ToString().ToUpper() == _MyViewModel.Write.ToUpper()
-                || p.DateOfBirth.ToUpper() == _MyViewModel.Write.ToUpper()).ToList();
+                for (int i = 0; i < filter.Length; i++)
+                {
+
+                    FiltredListSupillers = _MyViewModel.AvailableListSuppiler.Where(p => p.Name.ToUpper().Contains(filter[i].ToUpper()) || p.RG.ToUpper().Contains(filter[i].ToUpper()) ||
+                    p.Telephone.ToUpper().Contains(filter[i].ToUpper()) || p.Type.ToString().ToUpper().Contains(filter[i].ToUpper()) || p.Age.ToString().ToUpper().Contains(filter[i].ToUpper())
+                    || p.Code.ToUpper().Contains(filter[i].ToUpper()) || p.Company.CompanyName.ToUpper().Contains(filter[i].ToUpper()) || p.Date.ToString().ToUpper().Contains(filter[i].ToUpper())
+                    || p.DateOfBirth.ToUpper().Contains(filter[i].ToUpper())).ToList();
+                }
+
 
                 _MyViewModel.AvailableListSuppiler = new ObservableCollection<Supplier>(FiltredListSupillers);
 
