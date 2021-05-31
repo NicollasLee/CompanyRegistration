@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View"
         mc:Ignorable="d"
-        Title="Cadastre sua empresa" Height="595.375" Width="954">
+        Title="Cadastre sua empresa" Height="595.375" Width="1002">
     <Grid>
 
         <Grid>
@@ -20,7 +20,7 @@
             <Label x:Name="label1_Copy" Content="Search" HorizontalAlignment="Left" Foreground="White" Margin="189,24,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
             <TextBox HorizontalAlignment="Left" Text="{Binding Write, UpdateSourceTrigger=PropertyChanged}" ToolTip="Pode ser pesquisado por mais de uma caracteristica por vez" Height="26" Margin="155,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="Black"/>
 
-            <ListView ItemsSource="{Binding AvailableListSuppiler}" SelectedItem="{Binding SelectedSuppiler}" ScrollViewer.VerticalScrollBarVisibility="Auto" IsSynchronizedWithCurrentItem="True" SelectionMode="Single" HorizontalAlignment="Left" Height="242" Margin="10,107,0,0" VerticalAlignment="Top" Width="468">
+            <ListView ItemsSource="{Binding AvailableListSuppiler}" SelectedItem="{Binding SelectedSuppiler}" ScrollViewer.VerticalScrollBarVisibility="Auto" IsSynchronizedWithCurrentItem="True" SelectionMode="Single" HorizontalAlignment="Left" Height="242" Margin="10,107,0,0" VerticalAlignment="Top" Width="514">
 
                 <ListView.View>
                     <GridView>
@@ -28,7 +28,7 @@
                         <GridViewColumn Width="70" Header="Name" DisplayMemberBinding="{Binding Name}"/>
                         <GridViewColumn Width="105" Header="Code" DisplayMemberBinding="{Binding Code}"/>
                         <GridViewColumn Width="35" Header="Age" DisplayMemberBinding="{Binding Age}"/>
-                        <GridViewColumn Width="75" Header="Date" DisplayMemberBinding="{Binding Date}"/>
+                        <GridViewColumn Width="120" Header="Date" DisplayMemberBinding="{Binding Date}"/>
                         <GridViewColumn Width="110" Header="Tel" DisplayMemberBinding="{Binding Telephone}"/>
                     </GridView>
                 </ListView.View>
@@ -79,7 +79,7 @@
             <TextBox  HorizontalAlignment="Left" Text="{Binding Code, UpdateSourceTrigger=PropertyChanged}"  Height="22" Margin="26,168,0,0" MaxLength="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="Black"/>
 
             <Label Content="Registered date" HorizontalAlignment="Left" Foreground="White" Margin="26,287,0,0" VerticalAlignment="Top"/>
-            <TextBox  HorizontalAlignment="Left" Text="{Binding Date, Mode=OneWay}" IsEnabled="False" Height="22" Margin="26,313,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" BorderBrush="Black"/>
+            <TextBox  HorizontalAlignment="Left" Text="{Binding Date, Mode=OneWay}" IsEnabled="False" Height="22" Margin="26,313,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="Black"/>
 
             <Label Content="Telephone" HorizontalAlignment="Left" Foreground="White" Margin="26,335,0,0" VerticalAlignment="Top"/>
             <TextBox  HorizontalAlignment="Left" Text="{Binding Telephone, UpdateSourceTrigger=PropertyChanged}" MaxLength="14" Height="22" Margin="26,366,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="Black"/>
@@ -109,7 +109,7 @@
             </Button>
 
         </Grid>
-        <Grid Margin="10,13,762,128">
+        <Grid Margin="10,13,784,128">
             <Label x:Name="label" Content="Register your company" HorizontalAlignment="Left" Foreground="White" Margin="26,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
 
             <Label Content="Name" HorizontalAlignment="Left" Margin="26,53,0,0" Foreground="White" VerticalAlignment="Top"/>

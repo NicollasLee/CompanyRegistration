@@ -20,12 +20,13 @@ namespace Model
 
         public int Age { get; set; }
 
-        public string Date { get { return DateTime.Now.Date.Date.ToString("G"); } }
+        public string Date { get { return DateTime.Now.ToString(); } }
 
         public string Telephone { get; set; }
 
         public string RG { get; set; }
 
         public string DateOfBirth { get; set; }
+
     }
 }

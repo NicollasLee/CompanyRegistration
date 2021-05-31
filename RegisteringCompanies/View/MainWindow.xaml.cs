@@ -99,7 +99,6 @@ namespace View
 
                 _MyViewModel.AvailableListSuppiler = new ObservableCollection<Supplier>(FiltredListSupillers);
 
-
             }
         }
 
@@ -115,6 +114,7 @@ namespace View
                 {
                     _MyViewModel.AvailableListSuppiler.Remove(_MyViewModel.SelectedSuppiler);
                 }
+
                 _MyViewModel.NewSuppiler();
                 _MyViewModel.UpdateContext();
             }
